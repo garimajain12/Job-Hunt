@@ -91,7 +91,7 @@ const CompanySetup = () => {
               className="flex items-center gap-2 text-gray-500 font-semibold"
             >
               <ArrowLeft />
-              <span>Back</span>
+              <span className="text-gray-700">Back</span>
             </Button>
             <h1 className="font-bold text-xl">Company Setup</h1>
           </div>
@@ -142,11 +142,14 @@ const CompanySetup = () => {
             </div>
           </div>
           {loading ? (
-            <Button className="w-full my-4">
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
+            <Button className="w-full my-4 bg-gray-800 text-white hover:bg-gray-900">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin " /> Please wait
             </Button>
           ) : (
-            <Button type="submit" className="w-full my-4 cursor-pointer">
+            <Button
+              type="submit"
+              className="w-full my-4 cursor-pointer bg-gray-800 text-white hover:bg-gray-900"
+            >
               Update
             </Button>
           )}

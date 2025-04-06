@@ -35,15 +35,17 @@ const CompaniesTable = () => {
   }, [companies, searchCompanyByText]);
 
   return (
-    <div>
+    <div className="overflow-x-auto">
       <Table>
-        <TableCaption>A list of your recent registered companies</TableCaption>
+        <TableCaption>
+          A list of your recently registered companies
+        </TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Logo</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Date</TableHead>
-            <TableHead className="text-right">Action</TableHead>
+            <TableHead className="text-center w-[100px]">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -56,17 +58,17 @@ const CompaniesTable = () => {
               </TableCell>
               <TableCell>{company.name}</TableCell>
               <TableCell>{company.createdAt.split("T")[0]}</TableCell>
-              <TableCell className="text-right cursor-pointer">
+              <TableCell className="text-center cursor-pointer w-[100px]">
                 <Popover>
                   <PopoverTrigger>
-                    <MoreHorizontal />
+                    <MoreHorizontal className="mx-auto" />
                   </PopoverTrigger>
                   <PopoverContent className="w-32">
                     <div
                       onClick={() =>
                         navigate(`/admin/companies/${company._id}`)
                       }
-                      className="flex items-center gap-2 w-fit cursor-pointer"
+                      className="flex items-center gap-2 w-fit cursor-pointer hover:text-blue-600"
                     >
                       <Edit2 className="w-4" />
                       <span>Edit</span>
