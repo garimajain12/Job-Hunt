@@ -11,6 +11,7 @@ import { USER_API_ENDPOINT } from "@/utils/constant";
 import { Loader2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "@/redux/authSlice";
+import { useEffect } from "react";
 
 const Signup = () => {
   const [input, setInput] = useState({
@@ -21,7 +22,7 @@ const Signup = () => {
     role: "",
     file: "",
   });
-  const { loading } = useSelector((store) => store.auth);
+  const { loading, user } = useSelector((store) => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -64,6 +65,12 @@ const Signup = () => {
       dispatch(setLoading(false));
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  });
 
   return (
     <div>
