@@ -162,7 +162,7 @@ const PostJob = () => {
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Select a Company" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white z-50 shadow-md rounded-md">
                   <SelectGroup>
                     {companies.map((company) => {
                       return (

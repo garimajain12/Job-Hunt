@@ -163,7 +163,7 @@ const Signup = () => {
             </div>
           </div>
           {loading ? (
-            <Button className="w-full my-4">
+            <Button className="w-full my-4 bg-blue-800 text-white hover:bg-blue-900">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
             </Button>
           ) : (
