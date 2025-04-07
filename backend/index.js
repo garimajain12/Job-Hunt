@@ -19,6 +19,7 @@ const corsOptions = {
   origin: process.env.FRONTEND_ENDPOINT,
   credentials: true,
 };
+console.log(corsOptions);
 app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
