@@ -11,22 +11,6 @@ import applicationRoute from "./routes/application.route.js";
 dotenv.config({});
 const app = express();
 
-const corsOptions = {
-  origin: ["http://localhost:5173", "https://getmyjob.vercel.app"],
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: [
-    "Origin",
-    "X-Requested-With",
-    "Content-Type",
-    "Accept",
-    "Authorization",
-  ],
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
