@@ -89,6 +89,8 @@ export const login = async (req, res) => {
       role: user.role,
       profile: user.profile,
     };
+    console.log("login success");
+
     return (
       res
         .status(200)
