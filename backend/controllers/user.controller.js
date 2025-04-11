@@ -60,13 +60,14 @@ export const login = async (req, res) => {
         .status(400)
         .json({ message: "Invalid credentials", success: false });
     }
-
+    console.log("1");
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       return res
         .status(400)
         .json({ message: "Invalid credentials", success: false });
     }
+    console.log("2");
 
     if (role !== user.role) {
       return res.status(400).json({
@@ -74,13 +75,18 @@ export const login = async (req, res) => {
         success: false,
       });
     }
+    console.log("3");
 
     const tokenData = {
       userId: user._id,
     };
+    console.log("4");
+
     const token = await jwt.sign(tokenData, process.env.SECRET_KEY, {
       expiresIn: "1d",
     });
+    console.log("5");
+
     user = {
       _id: user._id,
       fullname: user.fullname,
@@ -105,6 +111,8 @@ export const login = async (req, res) => {
         success: true,
       });
   } catch (error) {
+    console.log("error");
+
     console.log(error);
   }
 };
