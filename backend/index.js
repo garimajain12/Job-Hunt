@@ -14,20 +14,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const allowedOrigin = [
-  process.env.FRONTEND_ENDPOINT,
-  "http://localhost:5173",
-  "http://localhost:3000",
-];
-
-const corsOptions = {
-  origin: allowedOrigin,
-  optionsSuccessStatus: 200,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
-  credentials: true,
-  preflightContinue: false,
-};
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: "https://getmyjob.vercel.app",
+    credentials: true,
+  })
+);
 
 const PORT = process.env.PORT || 3000;
 
