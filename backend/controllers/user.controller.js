@@ -54,7 +54,8 @@ export const login = async (req, res) => {
         .json({ message: "All fields are required", success: false });
     }
     console.log("Login hoja");
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ email }).explain("executionStats");
+    console.log("user");
     console.log(user);
     if (!user) {
       return res
