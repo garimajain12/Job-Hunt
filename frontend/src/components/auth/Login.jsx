@@ -30,20 +30,28 @@ const Login = () => {
     e.preventDefault();
     try {
       dispatch(setLoading(true));
-      const res = await axios.post(`${USER_API_ENDPOINT}/login`, input, {
+      // const res = await axios.post(`${USER_API_ENDPOINT}/login`, input, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+      const res = await fetch(`${USER_API_ENDPOINT}/login`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(input),
       });
 
-      if (res.data.success) {
-        dispatch(setUser(res.data.user));
+      if (res.ok) {
+        const result = await res.json();
+        dispatch(setUser(result.user));
         navigate("/");
-        toast.success(res.data.message);
+        toast.success(result.message);
       }
     } catch (error) {
       console.error(error);
-      toast.error(error.response.data.message);
+      toast.error(error.response.message);
     } finally {
       dispatch(setLoading(false));
     }
