@@ -20,6 +20,7 @@ const corsOptions = {
     "X-Requested-With",
     "Accept",
   ],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -36,7 +37,8 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
+connectDB();
+
 app.listen(PORT, () => {
-  connectDB();
   console.log(`Server running on port ${PORT}`);
 });

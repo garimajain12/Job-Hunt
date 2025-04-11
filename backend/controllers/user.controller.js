@@ -54,15 +54,16 @@ export const login = async (req, res) => {
         .json({ message: "All fields are required", success: false });
     }
     console.log("Login hoja");
-    let user = await User.findOne({ email }).explain("executionStats");
-    console.log("user");
+    let user = await User.findOne({ email });
+    console.log("user")
     console.log(user);
     if (!user) {
       return res
         .status(400)
         .json({ message: "Invalid credentials", success: false });
     }
-    console.log("1");
+    console.log("1", user.password, password);
+
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       return res
