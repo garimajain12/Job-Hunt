@@ -15,15 +15,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
+  res.setHeader("Access-Control-Allow-Origin", `*`);
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, DELETE, OPTIONS"
+  );
+  console.log("\x1b[33m%s\x1b[0m", req.method + " " + req.url);
   next();
 });
-app.use(
-  cors({
-    origin: "https://getmyjob.vercel.app",
-    credentials: true,
-  })
-);
 
 const PORT = process.env.PORT || 3000;
 
