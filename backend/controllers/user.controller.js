@@ -91,21 +91,19 @@ export const login = async (req, res) => {
     };
     console.log("login success");
 
-    return (
-      res
-        .status(200)
-        // .cookie("token", token, {
-        //   maxAge: 1 * 24 * 60 * 60 * 1000,
-        //   httpOnly: true,
-        //   sameSite: "none",
-        //   secure: true,
-        // })
-        .json({
-          message: `Welcome back ${user.fullname}`,
-          user,
-          success: true,
-        })
-    );
+    return res
+      .status(200)
+      .cookie("token", token, {
+        maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
+        httpOnly: true,
+        sameSite: "lax",
+        secure: true,
+      })
+      .json({
+        message: `Welcome back ${user.fullname}`,
+        user,
+        success: true,
+      });
   } catch (error) {
     console.log(error);
   }

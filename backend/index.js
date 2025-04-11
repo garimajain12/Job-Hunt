@@ -10,24 +10,22 @@ import applicationRoute from "./routes/application.route.js";
 
 dotenv.config({});
 const app = express();
+
+const corsOptions = {
+  origin: process.env.FRONTEND_ENDPOINT || "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "X-Requested-With",
+    "Accept",
+  ],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", `*`);
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
-  );
-  console.log("\x1b[33m%s\x1b[0m", req.method + " " + req.url);
-  next();
-});
-
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
