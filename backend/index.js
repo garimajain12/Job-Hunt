@@ -14,21 +14,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
 const allowedOrigin = [
-   process.env.FRONTEND_ENDPOINT,
+  process.env.FRONTEND_ENDPOINT,
   "http://localhost:5173",
   "http://localhost:3000",
 ];
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigin.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: allowedOrigin,
   optionsSuccessStatus: 200,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
   credentials: true,
