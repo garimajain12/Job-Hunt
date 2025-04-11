@@ -11,19 +11,12 @@ import applicationRoute from "./routes/application.route.js";
 dotenv.config({});
 const app = express();
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", `*`);
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
-  );
-  console.log("\x1b[33m%s\x1b[0m", req.method + " " + req.url);
-  next();
-});
+app.use(
+  cors({
+    origin: "https://getmyjob.vercel.app",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
