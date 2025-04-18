@@ -53,7 +53,6 @@ export const login = async (req, res) => {
         .status(400)
         .json({ message: "All fields are required", success: false });
     }
-    console.log("login success");
 
     let user = await User.findOne({ email });
     if (!user) {
@@ -61,8 +60,6 @@ export const login = async (req, res) => {
         .status(400)
         .json({ message: "Invalid credentials", success: false });
     }
-    console.log(user);
-    console.log("user");
 
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
@@ -70,7 +67,6 @@ export const login = async (req, res) => {
         .status(400)
         .json({ message: "Invalid credentials", success: false });
     }
-    console.log(user.password);
 
     if (role !== user.role) {
       return res.status(400).json({
@@ -111,8 +107,6 @@ export const login = async (req, res) => {
       });
   } catch (error) {
     console.log(error);
-    console.log("error");
-
     return res.status(500);
   }
 };
