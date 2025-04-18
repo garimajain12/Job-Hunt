@@ -15,11 +15,11 @@ const category = [
   "Frontend Developer",
   "Backend Developer",
   "Software Engineer",
+  "FullStack Developer",
   "Mobile Developer",
   "Data Analyst",
   "Data Science",
   "Graphic Designer",
-  "FullStack Developer",
 ];
 
 const CategoryCarousel = (query) => {
